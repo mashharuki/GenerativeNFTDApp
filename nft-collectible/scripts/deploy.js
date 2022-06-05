@@ -9,7 +9,7 @@ async function main() {
 
     // コントラクトアドレスをターミナルに出力
     console.log("NFTCollectible.address:", contract.address);
-
+    /*
     // 無料配布用のNFTをMintする。
     let txn = await contract.reserveNFTs();
     await txn.wait();
@@ -18,6 +18,7 @@ async function main() {
     // 0.03 ETH を送信して3つ NFT を mint する
     txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther("0.03"),});
     await txn.wait();
+    */
 
     // コントラクト所有者の保有するtokenIdsを取得
     let tokens = await contract.tokensOfOwner(owner.address);
@@ -30,3 +31,4 @@ main()
         console.error(error);
         process.exit(1);
 });
+const { utils } = require("ethers");

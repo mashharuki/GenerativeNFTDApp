@@ -44,7 +44,13 @@ Owner has tokens:  [
 ]
  ```
 
-### コントラクトの検証結果
+ 下記は、Mumbaiネットワークへのデプロイ記録
+ ```cmd
+ NFTCollectible.address: 0xfe03B6a6B4B095248F06Ed9528e913995ED58f97
+ Owner has tokens:  [] 
+ ```
+
+### コントラクトの検証結果(Rinkeby)
  ```cmd
  contracts/NFTCollectible.sol:NFTCollectible at 0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7
 for verification on the block explorer. Waiting for verification result...
@@ -54,3 +60,15 @@ https://rinkeby.etherscan.io/address/0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7#
  ```
 
  <a href="https://rinkeby.etherscan.io/address/0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7#code">https://rinkeby.etherscan.io/address/0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7#code</a>
+
+### コントラクトの検証結果(Mumbai)
+ ```cmd
+ Successfully submitted source code for contract
+contracts/NFTCollectible.sol:NFTCollectible at 0xfe03B6a6B4B095248F06Ed9528e913995ED58f97
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract NFTCollectible on Etherscan.
+https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f97#code 
+ ```
+
+ <a href="https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f97#code">https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f97#code</a>
