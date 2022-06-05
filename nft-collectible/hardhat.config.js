@@ -34,6 +34,9 @@ module.exports = {
     apiKey: ETHERSCAN_APIKEY
   },
   */
+  paths: {                         
+    artifacts: './../client/src/contracts',  
+  },
   etherscan: {
     apiKey: POLYGONSCAN_APIKEY
   },
