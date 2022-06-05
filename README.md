@@ -17,3 +17,7 @@ Scrappy Squirrelsは、Generative NFT Artの代表例
  `python nft.py`  
 
  何体分の画像データを生成するか確認されるので適当な数字を入力する。
+
+## IPFSにアップロードしたメタデータのURI
+　http://127.0.0.1:5001/ipfs/bafybeihcyruaeza7uyjd6ugicbcrqumejf6uf353e5etdkhotqffwtguva/#/files/json  
+
