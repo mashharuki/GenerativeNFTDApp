@@ -14,8 +14,8 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 # Base metadata. MUST BE EDITED.
-BASE_IMAGE_URL = "ipfs://<-- Your CID Code-->"
-BASE_NAME = ""
+BASE_IMAGE_URL = "ipfs://QmTPaTaJwbdjfZ3cNb46bdxST3Fe9gaU4tB46bACwALNd9"
+BASE_NAME = "My First Collection #"
 
 BASE_JSON = {
     "name": BASE_NAME,
