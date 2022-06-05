@@ -25,7 +25,7 @@ Scrappy Squirrelsは、Generative NFT Artの代表例
  下記はRinkebyにデプロイした際のターミナルの出力例
 
  ```cmd
-NFTCollectible.address: 0xC25f1F8f4b4dFcd21c665445C29DA9c715099108
+NFTCollectible.address: 0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7
 10 NFTs have been reserved
 Owner has tokens:  [
   BigNumber { value: "0" },
@@ -43,3 +43,14 @@ Owner has tokens:  [
   BigNumber { value: "12" }
 ]
  ```
+
+### コントラクトの検証結果
+ ```cmd
+ contracts/NFTCollectible.sol:NFTCollectible at 0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract NFTCollectible on Etherscan.
+https://rinkeby.etherscan.io/address/0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7#code
+ ```
+
+ <a href="https://rinkeby.etherscan.io/address/0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7#code">https://rinkeby.etherscan.io/address/0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7#code</a>

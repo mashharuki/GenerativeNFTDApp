@@ -1,6 +1,6 @@
 async function main() {
     // baseURI
-    const baseTokenURI = "ipfs://bafybeihcyruaeza7uyjd6ugicbcrqumejf6uf353e5etdkhotqffwtguva/";
+    const baseTokenURI = "ipfs://QmVBo9Httns6eAbqH2voWMkAGY2RxDeKmMcfafV1uE2gcW/";
     const [owner] = await hre.ethers.getSigners();
     // コントラクトをデプロイする。
     const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
