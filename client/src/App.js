@@ -57,7 +57,7 @@ function App() {
        // 接続しているチェーンが Rinkebyであることを確認する。
        let chainId = await ethereum.request({ method: "eth_chainId" });
        if (chainId !== "0x13881") {
-        alert("You are not connected to the Rinkeby Test Network!");
+        alert("You are not connected to the Polygon Test Network!");
        } else {
           setNetworkId(chainId);
           // アカウント情報を要求する
@@ -89,7 +89,7 @@ function App() {
       // 接続しているチェーンが Rinkebyであることを確認する。
       let chainId = await ethereum.request({ method: "eth_chainId" });
       if (chainId !== "0x13881") {
-       alert("You are not connected to the Rinkeby Test Network!");
+       alert("You are not connected to the Polygon Test Network!");
       } else {
         setNetworkId(chainId);
         try {
