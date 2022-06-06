@@ -50,6 +50,12 @@ Owner has tokens:  [
  Owner has tokens:  [] 
  ```
 
+ 下記は、Shibuya Network(Astar networkのテストネット)へのデプロイ記録
+ ```cmd
+ NFTCollectible.address: 0xAa363921A48Eac63F802C57658CdEde768B3DAe1
+Owner has tokens:  []
+ ```
+
 ### コントラクトの検証結果(Rinkeby)
  ```cmd
  contracts/NFTCollectible.sol:NFTCollectible at 0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7
@@ -72,3 +78,10 @@ https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f9
  ```
 
  <a href="https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f97#code">https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f97#code</a>
+
+## コントラクトのアドレス
+
+|ネットワーク|コントラクトアドレス|
+|---|---|
+|Munbai Network|0xfe03B6a6B4B095248F06Ed9528e913995ED58f97|
+|Shibuya Network|0xAa363921A48Eac63F802C57658CdEde768B3DAe1|

@@ -53,5 +53,10 @@ module.exports = {
       url: POLYGON_URL,
       accounts: [PRIVATE_KEY],
     },
+    shibuya: {
+      url:"https://shibuya.public.blastapi.io",
+      chainId:81,
+      accounts:[process.env.PRIVATE_KEY],
+    }
   },
 };

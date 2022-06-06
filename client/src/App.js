@@ -12,10 +12,14 @@ import { css } from "@emotion/react";
 import SquirrelsSvg from "./assets/rinkeby_squirrels.gif";
 
 // コントラクトのアドレスとABIを設定
-const CONTRACT_ADDRESS = "0xfe03B6a6B4B095248F06Ed9528e913995ED58f97";
+const CONTRACT_ADDRESS = [
+  "0xfe03B6a6B4B095248F06Ed9528e913995ED58f97",
+  "0xAa363921A48Eac63F802C57658CdEde768B3DAe1"
+];
 const ABI = Contract.abi;
 const MAX_SUPPLY = 30;
-const POLYGONSCAN_LINK =`https://mumbai.polygonscan.com/address/${CONTRACT_ADDRESS}`;
+const POLYGONSCAN_LINK = `https://mumbai.polygonscan.com/address/${CONTRACT_ADDRESS[0]}`;
+const BLOCKSCOUT_LINK = `https://blockscout.com/shibuya/address/${CONTRACT_ADDRESS[1]}/transactions`;
 const OPENSEA_LINK = "https://testnets.opensea.io/account";
 
 // スピナー用の変数
@@ -43,6 +47,7 @@ function App() {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [mintingFlg, setMintingFlg] = useState(false);
   const [networkId, setNetworkId] = useState(null);
+  const [contractAddr, setContractAddr] = useState(null);
 
   /**
    * ウォレットの接続状態を確認するメソッド
@@ -56,10 +61,17 @@ function App() {
     } else {
        // 接続しているチェーンが Rinkebyであることを確認する。
        let chainId = await ethereum.request({ method: "eth_chainId" });
-       if (chainId !== "0x13881") {
+       if (chainId !== "0x13881" && chainId !== "0x51") {
         alert("You are not connected to the Polygon Test Network!");
        } else {
           setNetworkId(chainId);
+          // ネットワークによってセットするコントラクトのアドレスを変更する。
+          if (chainId === "0x13881") { // Munbai network
+            setContractAddr(CONTRACT_ADDRESS[0]);
+          } else if (chainId === "0x51") { // Shibuya network
+            setContractAddr(CONTRACT_ADDRESS[1]);
+          }
+
           // アカウント情報を要求する
           const accounts = await ethereum.request({ method: "eth_accounts" });
 
@@ -88,10 +100,18 @@ function App() {
     } else {
       // 接続しているチェーンが Rinkebyであることを確認する。
       let chainId = await ethereum.request({ method: "eth_chainId" });
-      if (chainId !== "0x13881") {
+      console.log("chain id", chainId);
+      if (chainId !== "0x13881" && chainId !== "0x51") {
        alert("You are not connected to the Polygon Test Network!");
       } else {
         setNetworkId(chainId);
+        // ネットワークによってセットするコントラクトのアドレスを変更する。
+        if (chainId === "0x13881") { // Munbai network
+          setContractAddr(CONTRACT_ADDRESS[0]);
+        } else if (chainId === "0x51") { // Shibuya network
+          setContractAddr(CONTRACT_ADDRESS[1]);
+        }
+
         try {
           const accounts = await ethereum.request({ method: "eth_requestAccounts" });
           console.log("Found an account! Address: ", accounts[0]);
@@ -119,7 +139,7 @@ function App() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const nftContract = new ethers.Contract(
-          CONTRACT_ADDRESS, 
+          contractAddr, 
           ABI, 
           signer
         );
@@ -146,7 +166,7 @@ function App() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const nftContract = new ethers.Contract(
-          CONTRACT_ADDRESS, 
+          contractAddr, 
           ABI, 
           signer
         );
@@ -199,7 +219,7 @@ function App() {
 
   useEffect(() => {
     checkWalletIsConnected();
-  }, []);
+  }, [contractAddr]);
 
   useEffect(() => {
     checkWalletIsConnected();
@@ -211,9 +231,15 @@ function App() {
       <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 4, my: 2}}>
         <strong>
           contract address : 
-          <a href={POLYGONSCAN_LINK}>
-            {CONTRACT_ADDRESS}
-          </a>
+          {(networkId === "0x13881") ? (
+            <a href={POLYGONSCAN_LINK}>
+              {contractAddr}
+            </a>
+          ) : (
+            <a href={BLOCKSCOUT_LINK}>
+              {contractAddr}
+            </a>
+          )}
         </strong>
       </Box>
       <Grid
