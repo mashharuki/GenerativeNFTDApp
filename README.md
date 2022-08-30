@@ -85,7 +85,7 @@ https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f9
 |---|---|
 |Munbai Network|0xfe03B6a6B4B095248F06Ed9528e913995ED58f97|
 |Shibuya Network|0xAa363921A48Eac63F802C57658CdEde768B3DAe1|
-|Shiden|0xAa363921A48Eac63F802C57658CdEde768B3DAe1|
+|Shiden|[0xAa363921A48Eac63F802C57658CdEde768B3DAe1](https://blockscout.com/shiden/address/0xAa363921A48Eac63F802C57658CdEde768B3DAe1)|
 
 ### 参考文献
 1. [わたしの Solidity 開発で最初にやっておくこと with hardhat](https://zenn.dev/linnefromice/articles/my-solidity-dev-environment-with-hardhat)

@@ -19,12 +19,14 @@ import SquirrelsSvg from "./assets/rinkeby_squirrels.gif";
 // コントラクトのアドレスとABIを設定
 const CONTRACT_ADDRESS = [
   "0xfe03B6a6B4B095248F06Ed9528e913995ED58f97",
+  "0xAa363921A48Eac63F802C57658CdEde768B3DAe1",
   "0xAa363921A48Eac63F802C57658CdEde768B3DAe1"
 ];
 const ABI = Contract.abi;
 const MAX_SUPPLY = 30;
 const POLYGONSCAN_LINK = `https://mumbai.polygonscan.com/address/${CONTRACT_ADDRESS[0]}`;
 const BLOCKSCOUT_LINK = `https://blockscout.com/shibuya/address/${CONTRACT_ADDRESS[1]}/transactions`;
+const BLOCKSCOUT_LINK2 = `https://blockscout.com/shiden/address/${CONTRACT_ADDRESS[2]}/transactions`;
 const OPENSEA_LINK = "https://testnets.opensea.io/account";
 
 // スピナー用の変数
@@ -67,31 +69,33 @@ function App() {
     } else {
        // 接続しているチェーンが Rinkebyであることを確認する。
        let chainId = await ethereum.request({ method: "eth_chainId" });
-       if (chainId !== "0x13881" && chainId !== "0x51") {
-        alert("You are not connected to the Polygon Test Network!");
+       if (chainId === "0x13881" || "0x51" || "0x150") {
+        setNetworkId(chainId);
+        // ネットワークによってセットするコントラクトのアドレスを変更する。
+        if (chainId === "0x13881") { // Munbai network
+          setContractAddr(CONTRACT_ADDRESS[0]);
+        } else if (chainId === "0x51") { // Shibuya network
+          setContractAddr(CONTRACT_ADDRESS[1]);
+        } else if (chainId === "0x150") { // Shiden network
+          setContractAddr(CONTRACT_ADDRESS[2])
+        }
+
+        // アカウント情報を要求する
+        const accounts = await ethereum.request({ method: "eth_accounts" });
+
+        if (accounts.length !== 0) {
+          const account = accounts[0];
+          console.log("Found an authorized account: ", account);
+          setCurrentAccount(account);
+          // 発行数を取得する。
+          let totalSupply = await getTotalSupply();
+          setSupply(totalSupply);
+        } else {
+          console.log("No authorized account found");
+        }
        } else {
-          setNetworkId(chainId);
-          // ネットワークによってセットするコントラクトのアドレスを変更する。
-          if (chainId === "0x13881") { // Munbai network
-            setContractAddr(CONTRACT_ADDRESS[0]);
-          } else if (chainId === "0x51") { // Shibuya network
-            setContractAddr(CONTRACT_ADDRESS[1]);
-          }
-
-          // アカウント情報を要求する
-          const accounts = await ethereum.request({ method: "eth_accounts" });
-
-          if (accounts.length !== 0) {
-            const account = accounts[0];
-            console.log("Found an authorized account: ", account);
-            setCurrentAccount(account);
-            // 発行数を取得する。
-            let totalSupply = await getTotalSupply();
-            setSupply(totalSupply);
-          } else {
-            console.log("No authorized account found");
-          }
-       }
+        alert("You are not connected to the Polygon Test Network!");
+       } 
     }
   };
 
@@ -107,15 +111,15 @@ function App() {
       // 接続しているチェーンが Rinkebyであることを確認する。
       let chainId = await ethereum.request({ method: "eth_chainId" });
       console.log("chain id", chainId);
-      if (chainId !== "0x13881" && chainId !== "0x51") {
-       alert("You are not connected to the Polygon Test Network!");
-      } else {
+      if (chainId === "0x13881" || "0x51" || "0x150") {
         setNetworkId(chainId);
         // ネットワークによってセットするコントラクトのアドレスを変更する。
         if (chainId === "0x13881") { // Munbai network
           setContractAddr(CONTRACT_ADDRESS[0]);
         } else if (chainId === "0x51") { // Shibuya network
           setContractAddr(CONTRACT_ADDRESS[1]);
+        } else if (chainId === "0x150") { // Shiden network
+          setContractAddr(CONTRACT_ADDRESS[2])
         }
 
         try {
@@ -129,6 +133,8 @@ function App() {
         } catch (err) {
           console.log(err);
         }
+      } else {
+        alert("You are not connected to the Polygon Test Network!");
       }
     }
   };
@@ -276,15 +282,21 @@ function App() {
       <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 4, my: 2}}>
         <strong>
           contract address : 
-          {(networkId === "0x13881") ? (
+          {(networkId === "0x13881") && (
             <a href={POLYGONSCAN_LINK}>
               {contractAddr}
             </a>
-          ) : (
+          )} 
+          {(networkId === "0x51") && (
             <a href={BLOCKSCOUT_LINK}>
               {contractAddr}
             </a>
-          )}
+          )} 
+          {(networkId === "0x150") && (
+            <a href={BLOCKSCOUT_LINK2}>
+              {contractAddr}
+            </a>
+          )} 
         </strong>
       </Box>
       <Grid
