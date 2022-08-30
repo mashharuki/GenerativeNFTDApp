@@ -11,6 +11,8 @@ const {
   POLYGON_URL
 } = process.env;
 
+const GWEI = 1000 * 1000;
+
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -56,7 +58,19 @@ module.exports = {
     shibuya: {
       url:"https://shibuya.public.blastapi.io",
       chainId:81,
-      accounts:[process.env.PRIVATE_KEY],
+      accounts:[PRIVATE_KEY],
+    },
+    shiden: {
+      url:"https://shiden.api.onfinality.io/public",
+      chainId:336,
+      //gasPrice: 3 * GWEI,
+      accounts:[PRIVATE_KEY],
+    },
+    astar: {
+      url:"https://astar.api.onfinality.io/public",
+      chainId:592,
+      // gasPrice: 3 * GWEI,
+      accounts:[PRIVATE_KEY],
     }
   },
 };

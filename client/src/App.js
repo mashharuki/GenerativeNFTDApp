@@ -2,6 +2,11 @@ import './App.css';
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Contract from "./contracts/contracts/NFTCollectible.sol/NFTCollectible.json";
@@ -48,6 +53,7 @@ function App() {
   const [mintingFlg, setMintingFlg] = useState(false);
   const [networkId, setNetworkId] = useState(null);
   const [contractAddr, setContractAddr] = useState(null);
+  const [count, setCount] = useState(1);
 
   /**
    * ウォレットの接続状態を確認するメソッド
@@ -172,11 +178,14 @@ function App() {
         );
   
         console.log("Initialize payment");
+        // value 
+        var value = (0.01 * count).toString();
         // NFTを一つMintする。
-        let nftTxn = await nftContract.mintNFTs(1, {
-          value: ethers.utils.parseEther("0.01"),
+        let nftTxn = await nftContract.mintNFTs(count, {
+          value: ethers.utils.parseEther(value),
         });
   
+        setCount(1);
         setMintingFlg(true);
         await nftTxn.wait();
   
@@ -211,9 +220,45 @@ function App() {
    */
   const mintNftButton = () => {
     return (
-      <button onClick={mintNftHandler} className="cta-button mint-nft-button">
-        Mint NFT
-      </button>
+      <>
+      <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 1, my: 1}}>
+        <Stack 
+          direction="row" 
+          justifyContent="center" 
+          alignItems="center" 
+          spacing={1}
+        >
+          <IconButton 
+            aria-label="remove"
+            size='large' 
+            onClick={() => setCount(count - 1)}
+          >
+            <RemoveCircleIcon/>
+          </IconButton>
+          <TextField
+            id="outlined-number"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={count}
+          />
+          <IconButton 
+            aria-label="add" 
+            size='large' 
+            onClick={() => setCount(count + 1)}
+          >
+            <AddCircleIcon/>
+          </IconButton>
+        </Stack>
+        </Box>
+        <button 
+          onClick={mintNftHandler} 
+          className="cta-button mint-nft-button"
+        >
+          Mint NFT
+        </button>
+      </>
     );
   };
 
@@ -254,7 +299,6 @@ function App() {
               <strong>発行状況：{supply} / {MAX_SUPPLY}</strong>
             </Box>
             <img src={SquirrelsSvg} alt="Polygon Squirrels" height="40%" /><br/>
-            { currentAccount ? mintNftButton() : connectWalletButton()}
             { mintingFlg ?
                 (
                   <div>
@@ -263,7 +307,11 @@ function App() {
                       Now Minting ...
                     </div>
                   </div>
-                ) :<></>
+                ) :( 
+                <>
+                  { currentAccount ? mintNftButton() : connectWalletButton()}
+                </>
+                )
             }
           </StyledPaper>
           <button className="opensea-button cta-button">

@@ -1,3 +1,5 @@
+const hre = require("hardhat");
+
 async function main() {
     // baseURI
     const baseTokenURI = "ipfs://QmVBo9Httns6eAbqH2voWMkAGY2RxDeKmMcfafV1uE2gcW/";
@@ -31,4 +33,3 @@ main()
         console.error(error);
         process.exit(1);
 });
-const { utils } = require("ethers");

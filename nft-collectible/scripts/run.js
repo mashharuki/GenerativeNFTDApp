@@ -1,3 +1,5 @@
+const hre = require("hardhat");
+
 async function main() {
     // baseURI
     const baseTokenURI = "ipfs://bafybeihcyruaeza7uyjd6ugicbcrqumejf6uf353e5etdkhotqffwtguva/";
