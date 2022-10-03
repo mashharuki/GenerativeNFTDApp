@@ -76,13 +76,11 @@ module.exports = {
     shiden: {
       url:"https://shiden.api.onfinality.io/public",
       chainId:336,
-      //gasPrice: 3 * GWEI,
       accounts:[PRIVATE_KEY],
     },
     astar: {
       url: "https://evm.astar.network",
       chainId: 592,
-      //gasPrice: 22500,
       accounts:[PRIVATE_KEY],
     }
   },

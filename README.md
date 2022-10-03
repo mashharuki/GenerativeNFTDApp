@@ -107,7 +107,7 @@ https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f9
 |Avalanche testnet|0x8DF7e6234f76e8fAC829feF83E7520635359094C|
 |Rinkeby|0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7|
 |BSC Testnet|0x67ADc29278d87D87b212C59fDffd2749fe7418c4|
-|Astar Network|0x599c542e6FF0e009D929091e948d2BA510136741|
+|Astar Network|[0x599c542e6FF0e009D929091e948d2BA510136741](https://blockscout.com/astar/address/0x599c542e6FF0e009D929091e948d2BA510136741)|
 
 ### 参考文献
 1. [わたしの Solidity 開発で最初にやっておくこと with hardhat](https://zenn.dev/linnefromice/articles/my-solidity-dev-environment-with-hardhat)
