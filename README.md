@@ -56,6 +56,24 @@ Owner has tokens:  [
 Owner has tokens:  []
  ```
 
+ 下記は、Avalancheのテストネットへのデプロイ記録
+ ```cmd
+> nft-collectible@1.0.0 deploy:fuji
+> npx hardhat run scripts/deploy.js --network fuji
+
+NFTCollectible.address: 0x8DF7e6234f76e8fAC829feF83E7520635359094C
+Owner has tokens:  []
+ ```
+
+下記は、Astar Networkへのデプロイ記録
+```cmd
+> nft-collectible@1.0.0 deploy:astar
+> npx hardhat run scripts/deploy.js --network astar
+
+NFTCollectible.address: 0x599c542e6FF0e009D929091e948d2BA510136741
+Owner has tokens:  []
+```
+
 ### コントラクトの検証結果(Rinkeby)
  ```cmd
  contracts/NFTCollectible.sol:NFTCollectible at 0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7
@@ -86,7 +104,12 @@ https://mumbai.polygonscan.com/address/0xfe03B6a6B4B095248F06Ed9528e913995ED58f9
 |Munbai Network|0xfe03B6a6B4B095248F06Ed9528e913995ED58f97|
 |Shibuya Network|0xAa363921A48Eac63F802C57658CdEde768B3DAe1|
 |Shiden|[0xAa363921A48Eac63F802C57658CdEde768B3DAe1](https://blockscout.com/shiden/address/0xAa363921A48Eac63F802C57658CdEde768B3DAe1)|
+|Avalanche testnet|0x8DF7e6234f76e8fAC829feF83E7520635359094C|
+|Rinkeby|0x587E68B8b22d803Ac0aAF568e87c6fE12DA103E7|
+|BSC Testnet|0x67ADc29278d87D87b212C59fDffd2749fe7418c4|
+|Astar Network|0x599c542e6FF0e009D929091e948d2BA510136741|
 
 ### 参考文献
 1. [わたしの Solidity 開発で最初にやっておくこと with hardhat](https://zenn.dev/linnefromice/articles/my-solidity-dev-environment-with-hardhat)
 2. [Astar Docs](https://docs.astar.network/docs/wasm/stack/smart-contract-wasm)
+3. [ipfs公式ドキュメント](http://ipfs.tech.ipns.localhost:8080/)

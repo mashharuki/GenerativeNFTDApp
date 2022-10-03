@@ -6,7 +6,9 @@
   "scripts": {
     "test": "npx hardhat run scripts/run.js",
     "deploy:shiden": "npx hardhat run scripts/deploy.js --network shiden",
-    "deploy:astar": "npx hardhat run scripts/deploy.js --network astar"
+    "deploy:astar": "npx hardhat run scripts/deploy.js --network astar",
+    "deploy:fuji": "npx hardhat run scripts/deploy.js --network fuji",
+    "deploy:bsctest": "npx hardhat run scripts/deploy.js --network bsctest"
   },
   "keywords": [],
   "author": "",
