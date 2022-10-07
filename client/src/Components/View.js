@@ -38,10 +38,17 @@ function View(props) {
         //get metadata
         var metadata = JSON.parse(nft.metadata);
         console.log("metadata:", metadata);
+        // image URL
+        var imageURL;
+
+        if(metadata) {
+            var result = metadata.image.substr(7);
+            imageURL = "https://gateway.pinata.cloud/ipfs/" + result;
+        }
 
         return (
             <div>
-                { metadata ? <img src={metadata.image} /> : <></> }
+                { metadata ? <img src={imageURL} /> : <></> }
             </div>
         );
     }
