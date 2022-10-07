@@ -172,6 +172,53 @@ curl -X 'GET' \
 }
 ```
 
+### テストカバレッジ実行結果
+
+```zsh
+npm run coverage
+```
+実行結果
+
+```zsh
+> nft-collectible@1.0.0 coverage
+> npx hardhat coverage
+
+
+Version
+=======
+> solidity-coverage: v0.8.2
+
+Instrumenting for coverage...
+=============================
+
+> NFTCollectible.sol
+
+Compilation:
+============
+
+Compiled 16 Solidity files successfully
+
+Network Info
+============
+> HardhatEVM: v2.11.2
+> network:    hardhat
+
+
+
+  0 passing (0ms)
+
+---------------------|----------|----------|----------|----------|----------------|
+File                 |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+---------------------|----------|----------|----------|----------|----------------|
+ contracts/          |        0 |        0 |        0 |        0 |                |
+  NFTCollectible.sol |        0 |        0 |        0 |        0 |... 85,86,88,89 |
+---------------------|----------|----------|----------|----------|----------------|
+All files            |        0 |        0 |        0 |        0 |                |
+---------------------|----------|----------|----------|----------|----------------|
+
+> Istanbul reports written to ./coverage/ and ./coverage.json
+```
+
 ### 参考文献
 1. [わたしの Solidity 開発で最初にやっておくこと with hardhat](https://zenn.dev/linnefromice/articles/my-solidity-dev-environment-with-hardhat)
 2. [Astar Docs](https://docs.astar.network/docs/wasm/stack/smart-contract-wasm)
@@ -182,3 +229,4 @@ curl -X 'GET' \
 7. [Web3UIkit](https://github.com/web3ui/web3uikit)
 8. [Web3UIkit CodeSandBox](https://codesandbox.io/examples/package/web3uikit)
 9. [alchemy nftMinter Docs](https://docs.alchemy.com/docs/nft-minter)
+10. [solidity-coverage](https://www.npmjs.com/package/solidity-coverage)
