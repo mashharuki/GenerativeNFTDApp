@@ -174,9 +174,8 @@ curl -X 'GET' \
 
 ### テストカバレッジ実行結果
 
-```zsh
-npm run coverage
-```
+`npm run coverage`
+
 実行結果
 
 ```zsh
@@ -219,6 +218,10 @@ All files            |        0 |        0 |        0 |        0 |              
 > Istanbul reports written to ./coverage/ and ./coverage.json
 ```
 
+### solgraph コマンドの使い方
+
+`solgraph MyContract.sol > MyContract.dot`
+
 ### 参考文献
 1. [わたしの Solidity 開発で最初にやっておくこと with hardhat](https://zenn.dev/linnefromice/articles/my-solidity-dev-environment-with-hardhat)
 2. [Astar Docs](https://docs.astar.network/docs/wasm/stack/smart-contract-wasm)
@@ -230,3 +233,6 @@ All files            |        0 |        0 |        0 |        0 |              
 8. [Web3UIkit CodeSandBox](https://codesandbox.io/examples/package/web3uikit)
 9. [alchemy nftMinter Docs](https://docs.alchemy.com/docs/nft-minter)
 10. [solidity-coverage](https://www.npmjs.com/package/solidity-coverage)
+11. [Ethereum Smart Contract Security Best Practices](https://consensys.github.io/smart-contract-best-practices/)
+12. [Security Tools](https://consensys.github.io/smart-contract-best-practices/security-tools/)
+13. [Solgraph](https://github.com/raineorshine/solgraph)

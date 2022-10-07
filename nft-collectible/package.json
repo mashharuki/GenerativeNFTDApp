@@ -9,7 +9,8 @@
     "deploy:astar": "npx hardhat run scripts/deploy.js --network astar",
     "deploy:fuji": "npx hardhat run scripts/deploy.js --network fuji",
     "deploy:bsctest": "npx hardhat run scripts/deploy.js --network bsctest",
-    "coverage": "npx hardhat coverage"
+    "coverage": "npx hardhat coverage",
+    "solgraph": "node scripts/solgraph.js"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "@nomiclabs/hardhat-etherscan": "^3.0.4",
     "@openzeppelin/contracts": "^4.6.0",
     "dotenv": "^16.0.1",
+    "solgraph": "^0.3.3",
     "solidity-coverage": "^0.8.2"
   }
 }
