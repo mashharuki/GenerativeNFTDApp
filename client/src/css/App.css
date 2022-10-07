@@ -21,6 +21,15 @@
   background: orange;
 }
 
+.card {
+  maxWidth: 80;
+  height: 80;
+}
+
+.cardMedia {
+  height: 50;
+}
+
 body {
   margin: 0 !important;
   height:100vh;

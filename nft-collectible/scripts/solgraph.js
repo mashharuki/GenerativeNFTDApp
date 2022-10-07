@@ -1,5 +1,5 @@
 const fs = require('fs');
-const solograph = require('solgraph');
+const solgraph = require('solgraph');
 
-const dot = solgraph(fs.readFileSync('./../contracts/NFTCollectible.sol'))
-console.log(dot)
+const dot = solgraph.solgraph(fs.readFileSync('./../contracts/NFTCollectible.sol'))
+console.log(dot);

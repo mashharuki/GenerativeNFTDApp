@@ -1,5 +1,8 @@
 import './../css/App.css';
 import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import NFT from './NFT';
 import superAgent from 'superagent';
 
 /**
@@ -48,17 +51,29 @@ function View(props) {
 
         return (
             <div>
-                { metadata ? <img src={imageURL} /> : <></> }
+                { metadata ? (
+                    <NFT
+                        name={metadata.name}
+                        description={metadata.description}
+                        imageURL={imageURL}
+                    />
+                ) : <></> }
             </div>
         );
     }
 
     return (
-        <>
-            {nfts.map((nft, i) => (
-                viewNFT(nft)
-            ))}
-        </>
+        <Box sx={{ flexGrow: 1 }}>
+            <Grid
+                container
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 4, sm: 4, md: 12 }}
+            >
+                {nfts.map((nft, i) => (
+                    viewNFT(nft)
+                ))}
+            </Grid>
+        </Box>
     );
 }
 

@@ -289,11 +289,19 @@ function App() {
       { viewFlg ? (
         <>
           <h1>NFT View</h1>
-          <View 
-            address={contractAddr} 
-            networkId={networkId}
-            baseURI={baseURI}
-          />
+          <Box sx={{ flexGrow: 1, mt: 2, my: 1}}>
+            <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
+              >
+                <View 
+                  address={contractAddr} 
+                  networkId={networkId}
+                  baseURI={baseURI}
+                />
+            </Grid>
+          </Box>
           <button 
             className="opensea-button cta-button"
             onClick={() => { setViewFlg(false) }}
