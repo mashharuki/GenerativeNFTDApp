@@ -6,7 +6,11 @@
   "scripts": {
     "test": "npx hardhat run scripts/run.js",
     "deploy:shiden": "npx hardhat run scripts/deploy.js --network shiden",
-    "deploy:astar": "npx hardhat run scripts/deploy.js --network astar"
+    "deploy:astar": "npx hardhat run scripts/deploy.js --network astar",
+    "deploy:fuji": "npx hardhat run scripts/deploy.js --network fuji",
+    "deploy:bsctest": "npx hardhat run scripts/deploy.js --network bsctest",
+    "coverage": "npx hardhat coverage",
+    "solgraph": "node scripts/solgraph.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +26,8 @@
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^3.0.4",
     "@openzeppelin/contracts": "^4.6.0",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "solgraph": "^0.3.3",
+    "solidity-coverage": "^0.8.2"
   }
 }

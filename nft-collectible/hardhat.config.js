@@ -1,5 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
+require('solidity-coverage')
 require('dotenv').config();
 
 const {
@@ -8,7 +9,8 @@ const {
   PRIVATE_KEY, 
   ETHERSCAN_APIKEY, 
   POLYGONSCAN_APIKEY,
-  POLYGON_URL
+  POLYGON_URL,
+  ASTAR_URL 
 } = process.env;
 
 const GWEI = 1000 * 1000;
@@ -55,6 +57,18 @@ module.exports = {
       url: POLYGON_URL,
       accounts: [PRIVATE_KEY],
     },
+    fuji: {
+      url: 'https://api.avax-test.network/ext/bc/C/rpc',
+      gasPrice: 225000000000,
+      chainId: 43113,
+      accounts: [PRIVATE_KEY]
+    },
+    bsctest: {
+      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
+      chainId: 97,
+      gasPrice: 20000000000,
+      accounts: [PRIVATE_KEY]
+    },
     shibuya: {
       url:"https://shibuya.public.blastapi.io",
       chainId:81,
@@ -63,13 +77,11 @@ module.exports = {
     shiden: {
       url:"https://shiden.api.onfinality.io/public",
       chainId:336,
-      //gasPrice: 3 * GWEI,
       accounts:[PRIVATE_KEY],
     },
     astar: {
-      url:"https://astar.api.onfinality.io/public",
-      chainId:592,
-      // gasPrice: 3 * GWEI,
+      url: "https://evm.astar.network",
+      chainId: 592,
       accounts:[PRIVATE_KEY],
     }
   },

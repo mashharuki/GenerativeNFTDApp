@@ -1,0 +1,77 @@
+.main-app {
+  text-align: center;
+  margin: 100px;
+}
+
+.cta-button {
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  min-width: 250px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.connect-wallet-button {
+  background: rgb(32, 129, 226);
+}
+
+.mint-nft-button {
+  background: orange;
+}
+
+.card {
+  maxWidth: 80;
+  height: 80;
+}
+
+.cardMedia {
+  height: 50;
+}
+
+body {
+  margin: 0 !important;
+  height:100vh;
+  width:100%;
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  animation: gradientBG 15s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes gradientBG {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  1000% {
+      background-position: 0% 50%;
+  }
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.twitter-logo {
+  width: 35px;
+  height: 35px;
+}
+
+.footer-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.opensea-button {
+  background-color: rgb(224, 124, 209);
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}

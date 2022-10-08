@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -15,6 +15,7 @@ import { ethers } from "ethers";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
 import SquirrelsSvg from "./assets/rinkeby_squirrels.gif";
+import View from './Components/View';
 
 // コントラクトのアドレスとABIを設定
 const CONTRACT_ADDRESS = [
@@ -56,6 +57,8 @@ function App() {
   const [networkId, setNetworkId] = useState(null);
   const [contractAddr, setContractAddr] = useState(null);
   const [count, setCount] = useState(1);
+  const [viewFlg, setViewFlg] = useState(false);
+  const [baseURI, setBaseURI] = useState(null);
 
   /**
    * ウォレットの接続状態を確認するメソッド
@@ -158,6 +161,10 @@ function App() {
   
         // 発行数を取得する。
         let totalSupply = await nftContract.totalSupply();
+        // get baseURI
+        let baseUri = await nftContract.baseTokenURI();
+        setBaseURI(baseUri);
+
         return totalSupply.toNumber();
       }
     } catch (err) {
@@ -189,6 +196,7 @@ function App() {
         // NFTを一つMintする。
         let nftTxn = await nftContract.mintNFTs(count, {
           value: ethers.utils.parseEther(value),
+          gasLimit: 500_000,
         });
   
         setCount(1);
@@ -278,62 +286,91 @@ function App() {
 
   return (
     <div className="main-app">
-      <h1>Let's Mint Generative NFT !!</h1>
-      <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 4, my: 2}}>
-        <strong>
-          contract address : 
-          {(networkId === "0x13881") && (
-            <a href={POLYGONSCAN_LINK}>
-              {contractAddr}
-            </a>
-          )} 
-          {(networkId === "0x51") && (
-            <a href={BLOCKSCOUT_LINK}>
-              {contractAddr}
-            </a>
-          )} 
-          {(networkId === "0x150") && (
-            <a href={BLOCKSCOUT_LINK2}>
-              {contractAddr}
-            </a>
-          )} 
-        </strong>
-      </Box>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3, mt: 10}}>
-          <StyledPaper sx={{my: 1, mx: "auto", p: 0, paddingTop: 2, borderRadius: 4}}>  
-            <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 1, my: 1}}>
-              <strong>発行状況：{supply} / {MAX_SUPPLY}</strong>
-            </Box>
-            <img src={SquirrelsSvg} alt="Polygon Squirrels" height="40%" /><br/>
-            { mintingFlg ?
-                (
-                  <div>
-                    <ClipLoader color="#99FF99" loading={mintingFlg} css={override} size={35} /><br/>
-                    <div className="spin-color">
-                      Now Minting ...
-                    </div>
-                  </div>
-                ) :( 
-                <>
-                  { currentAccount ? mintNftButton() : connectWalletButton()}
-                </>
-                )
-            }
-          </StyledPaper>
-          <button className="opensea-button cta-button">
-              <a href={OPENSEA_LINK}>
-                OpenSeaでNFTを見る
-              </a>
-            </button>
+      { viewFlg ? (
+        <>
+          <h1>NFT View</h1>
+          <Box sx={{ flexGrow: 1, mt: 2, my: 1}}>
+            <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
+              >
+                <View 
+                  address={contractAddr} 
+                  networkId={networkId}
+                  baseURI={baseURI}
+                />
+            </Grid>
+          </Box>
+          <button 
+            className="opensea-button cta-button"
+            onClick={() => { setViewFlg(false) }}
+          >
+            NFTを発行する
+          </button>
           <Footer/>
-        </Box>
-      </Grid>
+        </>
+      ) : (
+        <>
+          <h1>Let's Mint Generative NFT !!</h1>
+            <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 4, my: 2}}>
+              <strong>
+                contract address : 
+                {(networkId === "0x13881") && (
+                  <a href={POLYGONSCAN_LINK}>
+                    {contractAddr}
+                  </a>
+                )} 
+                {(networkId === "0x51") && (
+                  <a href={BLOCKSCOUT_LINK}>
+                    {contractAddr}
+                  </a>
+                )} 
+                {(networkId === "0x150") && (
+                  <a href={BLOCKSCOUT_LINK2}>
+                    {contractAddr}
+                  </a>
+                )} 
+              </strong>
+            </Box>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3, mt: 10}}>
+                <StyledPaper sx={{my: 1, mx: "auto", p: 0, paddingTop: 2, borderRadius: 4}}>  
+                  <Box sx={{ flexGrow: 1, overflow: "hidden", mt: 1, my: 1}}>
+                    <strong>発行状況：{supply} / {MAX_SUPPLY}</strong>
+                  </Box>
+                  <img src={SquirrelsSvg} alt="Polygon Squirrels" height="40%" /><br/>
+                  { mintingFlg ?
+                      (
+                        <div>
+                          <ClipLoader color="#99FF99" loading={mintingFlg} css={override} size={35} /><br/>
+                          <div className="spin-color">
+                            Now Minting ...
+                          </div>
+                        </div>
+                      ) :( 
+                      <>
+                        { currentAccount ? mintNftButton() : connectWalletButton()}
+                      </>
+                      )
+                  }
+                </StyledPaper>
+                <button 
+                  className="opensea-button cta-button"
+                  onClick={() => { setViewFlg(true) }}
+                >
+                  NFTを確認する
+                </button>
+                <Footer/>
+              </Box>
+            </Grid>
+        </>
+      )}
     </div>
   );
 }
