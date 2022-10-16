@@ -21,13 +21,19 @@ import View from './Components/View';
 const CONTRACT_ADDRESS = [
   "0xfe03B6a6B4B095248F06Ed9528e913995ED58f97",
   "0xAa363921A48Eac63F802C57658CdEde768B3DAe1",
-  "0xAa363921A48Eac63F802C57658CdEde768B3DAe1"
+  "0xAa363921A48Eac63F802C57658CdEde768B3DAe1",
+  "0x8DF7e6234f76e8fAC829feF83E7520635359094C",
+  "0x67ADc29278d87D87b212C59fDffd2749fe7418c4",
+  "0x599c542e6FF0e009D929091e948d2BA510136741"
 ];
 const ABI = Contract.abi;
 const MAX_SUPPLY = 30;
 const POLYGONSCAN_LINK = `https://mumbai.polygonscan.com/address/${CONTRACT_ADDRESS[0]}`;
 const BLOCKSCOUT_LINK = `https://blockscout.com/shibuya/address/${CONTRACT_ADDRESS[1]}/transactions`;
 const BLOCKSCOUT_LINK2 = `https://blockscout.com/shiden/address/${CONTRACT_ADDRESS[2]}/transactions`;
+const BLOCKSCOUT_LINK3 = `https://blockscout.com/astar/address/${CONTRACT_ADDRESS[5]}`;
+const SNOWTRACE_LINK = `https://testnet.snowtrace.io/address/${CONTRACT_ADDRESS[3]}`;
+const BSCSCAN_LINK = `https://testnet.bscscan.com/address/${CONTRACT_ADDRESS[4]}`;
 const OPENSEA_LINK = "https://testnets.opensea.io/account";
 
 // スピナー用の変数
@@ -81,6 +87,12 @@ function App() {
           setContractAddr(CONTRACT_ADDRESS[1]);
         } else if (chainId === "0x150") { // Shiden network
           setContractAddr(CONTRACT_ADDRESS[2])
+        } else if (chainId === "0xa869") { // fuji network
+          setContractAddr(CONTRACT_ADDRESS[3]);
+        } else if (chainId === "0x61") { // bsc testnet network
+          setContractAddr(CONTRACT_ADDRESS[4]);
+        } else if (chainId === "0x250") { // astar network
+          setContractAddr(CONTRACT_ADDRESS[5]);
         }
 
         // アカウント情報を要求する
@@ -123,6 +135,12 @@ function App() {
           setContractAddr(CONTRACT_ADDRESS[1]);
         } else if (chainId === "0x150") { // Shiden network
           setContractAddr(CONTRACT_ADDRESS[2])
+        } else if (chainId === "0xa869") { // fuji network
+          setContractAddr(CONTRACT_ADDRESS[3]);
+        } else if (chainId === "0x61") { // bsc testnet network
+          setContractAddr(CONTRACT_ADDRESS[4]);
+        } else if (chainId === "0x250") { // astar network
+          setContractAddr(CONTRACT_ADDRESS[5]);
         }
 
         try {
@@ -328,6 +346,21 @@ function App() {
                 )} 
                 {(networkId === "0x150") && (
                   <a href={BLOCKSCOUT_LINK2}>
+                    {contractAddr}
+                  </a>
+                )} 
+                {(networkId === "0xa869") && (
+                  <a href={SNOWTRACE_LINK}>
+                    {contractAddr}
+                  </a>
+                )} 
+                {(networkId === "0x61") && (
+                  <a href={BSCSCAN_LINK}>
+                    {contractAddr}
+                  </a>
+                )} 
+                {(networkId === "0x250") && (
+                  <a href={BLOCKSCOUT_LINK3}>
                     {contractAddr}
                   </a>
                 )} 
