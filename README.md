@@ -236,3 +236,4 @@ All files            |        0 |        0 |        0 |        0 |              
 11. [Ethereum Smart Contract Security Best Practices](https://consensys.github.io/smart-contract-best-practices/)
 12. [Security Tools](https://consensys.github.io/smart-contract-best-practices/security-tools/)
 13. [Solgraph](https://github.com/raineorshine/solgraph)
+14. [「429 Too Many Requests」エラーの解決方法](https://kinsta.com/jp/knowledgebase/429-too-many-requests/)
